@@ -1,0 +1,26 @@
+{
+  "address": ":8080",
+  "timeout": "2s",
+  "retries": 1,
+  "max_concurrent": 64,
+  "providers": [
+    {
+      "name": "mock-fast",
+      "type": "mock",
+      "weight": 1.0,
+      "latency": "15ms",
+      "tool_quality": 100,
+      "failure_threshold": 3,
+      "circuit_cooldown": "5s"
+    },
+    {
+      "name": "mock-backup",
+      "type": "mock",
+      "weight": 0.7,
+      "latency": "25ms",
+      "tool_quality": 100,
+      "failure_threshold": 3,
+      "circuit_cooldown": "5s"
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "name": "deterministic-tool-use-v1",
+  "cases": [
+    {
+      "id": "weather-exact",
+      "tags": ["tool", "single-step"],
+      "steps": [{
+        "prompt": "CALL:get_weather {\"city\":\"Austin\",\"units\":\"fahrenheit\"}",
+        "tools": [{"type":"function","function":{"name":"get_weather","description":"Get weather","parameters":{"type":"object"}}}],
+        "expected_call": {"name":"get_weather","arguments":{"city":"Austin","units":"fahrenheit"}}
+      }]
+    },
+    {
+      "id": "safe-abstention",
+      "tags": ["abstention"],
+      "steps": [{
+        "prompt": "Explain why the sky is blue without calling a tool.",
+        "tools": [{"type":"function","function":{"name":"delete_account","parameters":{"type":"object"}}}],
+        "abstain": true
+      }]
+    },
+    {
+      "id": "travel-two-step",
+      "tags": ["tool", "multi-step"],
+      "steps": [
+        {
+          "prompt": "CALL:find_flights {\"destination\":\"BOS\",\"origin\":\"AUS\"}",
+          "tools": [{"type":"function","function":{"name":"find_flights","parameters":{"type":"object"}}}],
+          "expected_call": {"name":"find_flights","arguments":{"destination":"BOS","origin":"AUS"}}
+        },
+        {
+          "prompt": "CALL:reserve_flight {\"flight_id\":\"F100\"}",
+          "tools": [{"type":"function","function":{"name":"reserve_flight","parameters":{"type":"object"}}}],
+          "expected_call": {"name":"reserve_flight","arguments":{"flight_id":"F100"}}
+        }
+      ]
+    },
+    {
+      "id": "numeric-arguments",
+      "tags": ["tool"],
+      "steps": [{
+        "prompt": "CALL:convert_currency {\"amount\":125.5,\"from\":\"USD\",\"to\":\"EUR\"}",
+        "tools": [{"type":"function","function":{"name":"convert_currency","parameters":{"type":"object"}}}],
+        "expected_call": {"name":"convert_currency","arguments":{"amount":125.5,"from":"USD","to":"EUR"}}
+      }]
+    }
+  ]
+}

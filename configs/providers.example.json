@@ -1,0 +1,17 @@
+{
+  "address": ":8080",
+  "timeout": "8s",
+  "retries": 1,
+  "max_concurrent": 128,
+  "providers": [
+    {
+      "name": "local-model-server",
+      "type": "openai-compatible",
+      "endpoint": "http://host.docker.internal:11434/v1/chat/completions",
+      "api_key_env": "LOCAL_MODEL_API_KEY",
+      "weight": 1.0,
+      "failure_threshold": 4,
+      "circuit_cooldown": "15s"
+    }
+  ]
+}
