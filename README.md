@@ -1,5 +1,7 @@
 # Agent Gateway Go
 
+[![CI](https://github.com/ryewmn/agent-gateway-go/actions/workflows/ci.yml/badge.svg)](https://github.com/ryewmn/agent-gateway-go/actions/workflows/ci.yml)
+
 A production-minded AI model gateway and objective tool-call benchmark written with the Go standard library. It demonstrates the engineering around AI systems that matters after a prototype: routing, resilience, concurrency control, safe telemetry, deterministic evaluation, and regression gates.
 
 No paid API is required. Two deterministic mock providers make the full gateway and benchmark reproducible in CI.
